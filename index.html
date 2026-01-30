@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Invite</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #ffe4e1; text-align: center; }
+        .card { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 80%; max-width: 400px; }
+        .page { display: none; }
+        .active { display: block; }
+        h1 { color: #ff4d6d; }
+        button { background-color: #ff4d6d; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-size: 1rem; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+        button:hover { background-color: #ff758f; transform: scale(1.05); }
+        .options { display: flex; flex-direction: column; gap: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div id="page1" class="page active">
+        <h1>Hey! 👋</h1>
+        <p>I have a quick question for you, but first...</p>
+        <button onclick="nextPage('page2')">Start</button>
+    </div>
+
+    <div id="page2" class="page">
+        <h1>Vibe Check</h1>
+        <p>If we were hanging out, what are we doing?</p>
+        <div class="options">
+            <button onclick="nextPage('page3')">Getting fancy cocktails 🍸</button>
+            <button onclick="nextPage('page3')">Finding the best tacos 🌮</button>
+            <button onclick="nextPage('page3')">A competitive round of bowling 🎳</button>
+        </div>
+    </div>
+
+    <div id="page3" class="page">
+        <h1>The Big Question</h1>
+        <p>I'd love to take you on a date this Friday. You in?</p>
+        <button onclick="alert('Yay! Check your texts! ❤️')">Yes!</button>
+        <button onclick="moveButton(this)" onmouseover="moveButton(this)" style="background: #ccc;">No</button>
+    </div>
+</div>
+
+<script>
+    function nextPage(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+    }
+
+    function moveButton(btn) {
+        // The "Catch me if you can" logic
+        const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+        const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+        btn.style.position = 'absolute';
+        btn.style.left = x + 'px';
+        btn.style.top = y + 'px';
+    }
+</script>
+
+</body>
+</html>
